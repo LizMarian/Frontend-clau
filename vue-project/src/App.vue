@@ -80,200 +80,111 @@ onMounted(() => {
 </script>
 
 <style>
-/* --- ESTILOS GLOBALES Y REDISEÑO --- */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
 
 :root {
-  --clr-background: #f3f4f6; /* Gris claro de fondo */
-  --clr-foreground: #ffffff; /* Blanco para las tarjetas */
-  --clr-primary: #3b82f6; /* Azul primario */
-  --clr-primary-hover: #2563eb; /* Azul más oscuro para hover */
-  --clr-text-primary: #1f2937; /* Texto principal oscuro */
-  --clr-text-secondary: #6b7280; /* Texto secundario gris */
-  --clr-border: #e5e7eb; /* Borde sutil */
-  --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --clr-background: #2c2f3a;        /* Fondo oscuro */
+  --clr-card: #20232c;              /* Tarjeta más oscura */
+  --clr-field: #fff;                /* Campo blanco */
+  --clr-button: #e5a93b;            /* Botón amarillo */
+  --clr-button-hover: #b87f21;      /* Botón hover más oscuro */
+  --clr-text-primary: #fff;         /* Texto blanco */
+  --clr-text-secondary: #c7c9d3;    /* Texto gris sutil */
+  --clr-border: #47495a;            /* Bordes sutiles oscuros */
+  --shadow: 0 4px 24px rgba(0,0,0,0.08);
 }
 
 body {
   font-family: 'Inter', sans-serif;
   background-color: var(--clr-background);
   color: var(--clr-text-primary);
+  margin: 0;
+  min-height: 100vh;
 }
 
-.app-container {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem;
-}
-
-.app-header {
-  text-align: center;
-  margin-bottom: 2.5rem;
-}
-
-.app-title {
-  font-size: 2.25rem;
-  font-weight: 800;
-  color: var(--clr-text-primary);
-}
-
-.main-content {
+.form-card {
+  background-color: var(--clr-card);
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow);
+  padding: 2rem 2.5rem 2.5rem 2.5rem;
+  max-width: 400px;
+  margin: 2rem auto;
   display: flex;
   flex-direction: column;
-  gap: 2.5rem;
+  align-items: center;
 }
 
-/* Estilos compartidos para las secciones */
-.management-section {
-  display: grid;
-  grid-template-columns: 380px 1fr;
-  gap: 2rem;
-  align-items: flex-start;
-}
-
-.section-form-card,
-.section-table-card {
-  background-color: var(--clr-foreground);
-  border-radius: 0.75rem;
-  box-shadow: var(--shadow);
-  padding: 1.75rem;
-}
-
-.card-title {
+.avatar {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background-color: #39a7a9;
+  margin-top: -70px;
+  margin-bottom: 1rem;
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin-bottom: 1.5rem;
-  color: var(--clr-text-primary);
-  border-bottom: 1px solid var(--clr-border);
-  padding-bottom: 1rem;
-}
-
-/* Estilos del Formulario */
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  justify-content: center;
+  overflow: hidden;
 }
 
 .form-group {
-  display: flex;
-  flex-direction: column;
+  width: 100%;
+  margin-bottom: 1rem;
 }
 
 .form-group label {
-  font-size: 0.875rem;
-  font-weight: 500;
   color: var(--clr-text-secondary);
-  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+  margin-bottom: 0.2rem;
+  display: block;
 }
 
 .form-group input {
-  padding: 0.75rem;
+  width: 100%;
+  padding: 0.65rem;
   border: 1px solid var(--clr-border);
-  border-radius: 0.5rem;
+  border-radius: 0.3rem;
   font-size: 1rem;
-  transition: box-shadow 0.2s, border-color 0.2s;
+  outline: none;
+  background: var(--clr-field);
+  color: #333;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .form-group input:focus {
-  outline: none;
-  border-color: var(--clr-primary);
-  box-shadow: 0 0 0 3px #c7d2fe;
+  border-color: var(--clr-button);
+  box-shadow: 0 0 0 2px rgba(229,169,59,0.12);
 }
 
-.submit-button, .cancel-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
-  color: white;
-  padding: 0.75rem;
-  border: none;
-  border-radius: 0.5rem;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.2s, transform 0.1s;
+.button-container {
+  width: 100%;
+  text-align: center;
   margin-top: 1rem;
 }
 
 .submit-button {
-  background-color: var(--clr-primary);
+  background-color: var(--clr-button);
+  color: #fff;
+  padding: 0.7rem 2rem;
+  border: none;
+  border-radius: 0.3rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.18s;
+  box-shadow: 0 2px 7px rgba(0,0,0,0.12);
 }
+
 .submit-button:hover {
-  background-color: var(--clr-primary-hover);
-  transform: translateY(-2px);
+  background-color: var(--clr-button-hover);
 }
 
-.cancel-button {
-  background-color: var(--clr-text-secondary);
-}
-.cancel-button:hover {
-  background-color: #4b5563;
-  transform: translateY(-2px);
-}
-
-/* Estilos de la Tabla */
-.table-title {
-  font-size: 1.125rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
-  color: var(--clr-text-primary);
-}
-.table-container {
-  overflow-x: auto;
-}
-.data-table {
-  width: 100%;
-  border-collapse: collapse;
-  text-align: left;
-}
-.data-table th, .data-table td {
-  padding: 1rem 1.25rem;
-  border-bottom: 1px solid var(--clr-border);
-  vertical-align: middle;
-}
-.data-table th {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--clr-text-secondary);
-  background-color: #f9fafb;
-}
-.data-table tr:last-child td {
-  border-bottom: none;
-}
-.data-table tr:hover {
-  background-color: #f9fafb;
-}
-.empty-state {
-  text-align: center;
-  color: var(--clr-text-secondary);
-  padding: 2.5rem;
-  font-style: italic;
-}
-.rol-badge {
-  display: inline-block;
-  background-color: #e0e7ff;
-  color: #4338ca;
-  padding: 0.25rem 0.625rem;
-  border-radius: 9999px;
-  font-size: 0.8rem;
-  font-weight: 600;
-}
-.action-buttons button {
-  font-weight: 600;
-  transition: color 0.2s;
-}
-
-/* Responsive */
-@media (max-width: 992px) {
-  .management-section {
-    grid-template-columns: 1fr;
+@media (max-width: 500px) {
+  .form-card {
+    padding: 1rem;
+    max-width: 95vw;
   }
 }
+
+
 </style>
