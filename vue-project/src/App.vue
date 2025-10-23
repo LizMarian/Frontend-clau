@@ -40,7 +40,7 @@ interface Usuario { id_usuario: number; nombre: string; correo: string; rol: str
 
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:4001';
-// 💡 CORRECCIÓN 1: Se envuelve toda la URL con comillas invertidas (backticks `)
+
 const USUARIOS_API_URL = `${API_BASE_URL}/api/usuarios`;
 
 
@@ -61,13 +61,13 @@ const mostrarModal = (title: string, message: string, variant = 'success') => {
 const cargarUsuarios = async () => {
   try {
     const res = await fetch(USUARIOS_API_URL);
-    // 💡 CORRECCIÓN 2: Se envuelve el mensaje de error con comillas invertidas (backticks `)
+    
     if (!res.ok) throw new Error(`Error HTTP: ${res.status}`);
     usuarios.value = await res.json() as Usuario[];
   } catch (error: unknown) {
     let message = 'Ocurrió un error desconocido.';
     if (error instanceof Error) message = error.message;
-    // 💡 CORRECCIÓN 3: Se envuelve el mensaje del modal con comillas invertidas (backticks `)
+    
     mostrarModal('❌ Error de Conexión', `No se pudo cargar la lista de usuarios. ${message}`, 'error');
   }
 };
